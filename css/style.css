@@ -149,9 +149,21 @@ p{margin:0 0 1em}
 .fact-num{font-family:var(--ff-display);font-size:1.7rem;font-weight:700;color:var(--ink)}
 .fact-lbl{font-size:.85rem}
 .hero-right{position:relative;min-height:340px;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(150deg,var(--sky-l),#fff);padding:clamp(1rem,3vw,2.5rem)}
-.hero-right img{width:100%;height:100%;max-height:560px;object-fit:contain;border-radius:var(--r)}
-.hero-badge{position:absolute;left:clamp(.8rem,3vw,2rem);bottom:clamp(.8rem,3vw,2rem);background:#fff;border-radius:var(--r);
+  padding:clamp(1.5rem,4vw,3rem);overflow:hidden}
+/* Dekorative Farbflächen im Logo-Blau hinter dem Foto */
+.hero-right::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,var(--sky) 0%,transparent 70%);opacity:.55;
+  top:-12%;right:-14%;filter:blur(6px)}
+.hero-right::after{content:"";position:absolute;width:55%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,var(--sky-l) 0%,transparent 72%);
+  bottom:-10%;left:-10%}
+.hero-right img{position:relative;z-index:1;width:100%;height:auto;max-height:520px;object-fit:contain;
+  background:#fff;padding:10px;border-radius:calc(var(--r) + 6px);
+  box-shadow:0 24px 60px rgba(28,27,34,.22);
+  animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-.4deg)}50%{transform:translateY(-10px) rotate(.4deg)}}
+@media (prefers-reduced-motion:reduce){.hero-right img{animation:none}}
+.hero-badge{position:absolute;z-index:2;left:clamp(.8rem,3vw,2rem);bottom:clamp(.8rem,3vw,2rem);background:#fff;border-radius:var(--r);
   box-shadow:var(--shadow);padding:.9rem 1.2rem;display:flex;gap:.8rem;align-items:center;max-width:90%}
 .hero-badge .ico{font-size:1.6rem}
 .hero-badge strong{display:block;color:var(--ink);font-size:.95rem}
@@ -177,8 +189,9 @@ p{margin:0 0 1em}
 /* ---------- Warum wir / Überzeugung ---------- */
 .why{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center;margin-top:2.2rem}
 .why-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;
-  background:linear-gradient(150deg,var(--sky-l),#fff);display:flex;align-items:center;justify-content:center;padding:1rem}
-.why-img img{width:100%;height:100%;object-fit:contain}
+  background:linear-gradient(150deg,var(--sky-l),#fff);display:flex;align-items:center;justify-content:center;padding:1.1rem}
+.why-img img{width:100%;height:100%;object-fit:contain;background:#fff;padding:8px;border-radius:12px;
+  box-shadow:0 10px 26px rgba(28,27,34,.12)}
 .why-badge{position:absolute;right:1rem;bottom:1rem;background:#fff;border-radius:12px;box-shadow:var(--shadow);
   padding:.7rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink)}
 .feat{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem}
@@ -198,8 +211,9 @@ p{margin:0 0 1em}
   margin:0 auto;padding:clamp(2rem,5vw,3.5rem) clamp(1rem,4vw,2rem)}
 .ld:nth-of-type(even) .ld-img{order:2}
 .ld-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;
-  background:linear-gradient(150deg,var(--sky-l),#fff);display:flex;align-items:center;justify-content:center;padding:1rem}
-.ld-img img{width:100%;height:100%;object-fit:contain}
+  background:linear-gradient(150deg,var(--sky-l),#fff);display:flex;align-items:center;justify-content:center;padding:1.1rem}
+.ld-img img{width:100%;height:100%;object-fit:contain;background:#fff;padding:8px;border-radius:12px;
+  box-shadow:0 10px 26px rgba(28,27,34,.12)}
 .ld-label{position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.94);border-radius:999px;
   padding:.3rem .9rem;font-size:.78rem;font-weight:700;color:var(--blue-d);letter-spacing:.05em;text-transform:uppercase}
 .ld-label.neu{background:var(--gold);color:var(--ink)}
@@ -372,4 +386,31 @@ p{margin:0 0 1em}
 /* Firefox: backdrop-filter-Fallback */
 @supports not (backdrop-filter:blur(10px)){
   .header{background:rgba(255,255,255,.98)}
+}
+
+
+/* ============================================================
+   LIGHTBOX — Impressionen antippen/anklicken zum Vergrößern
+   ============================================================ */
+.gal{cursor:pointer}
+.gal:focus-visible{outline:3px solid var(--sky)}
+.lb{position:fixed;inset:0;z-index:500;background:rgba(28,27,34,.94);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:calc(1rem + env(safe-area-inset-top)) 1rem calc(1rem + env(safe-area-inset-bottom));
+  opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.lb.open{opacity:1;visibility:visible}
+.lb img{max-width:min(94vw,1100px);max-height:78vh;object-fit:contain;border-radius:10px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);touch-action:pan-y}
+.lb-cap{color:#fff;margin-top:.9rem;font-size:.95rem;text-align:center}
+.lb-count{color:var(--sky);font-size:.8rem;margin-top:.2rem}
+.lb button{position:absolute;border:0;cursor:pointer;background:rgba(255,255,255,.12);color:#fff;
+  width:52px;height:52px;border-radius:50%;font-size:1.4rem;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.lb button:hover{background:var(--sky);color:var(--ink)}
+.lb-close{top:calc(.9rem + env(safe-area-inset-top));right:1rem}
+.lb-prev{left:.7rem;top:50%;transform:translateY(-50%)}
+.lb-next{right:.7rem;top:50%;transform:translateY(-50%)}
+@media (max-width:640px){
+  .lb-prev,.lb-next{width:44px;height:44px;font-size:1.15rem}
+  .lb img{max-height:70vh}
 }

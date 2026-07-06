@@ -196,4 +196,74 @@
       wrap.appendChild(iframe);
     });
   }
+
+  /* ---------- Lightbox: Galerie-Bilder groß ansehen ----------
+     Funktioniert per Klick (PC), Tippen & Wischen (Handy/Tablet)
+     und Tastatur (Pfeiltasten, Escape). */
+  var gals = Array.prototype.slice.call(document.querySelectorAll(".gal"));
+  var items = gals.map(function (g) {
+    var img = g.querySelector("img");
+    var cap = g.querySelector(".gal-cap");
+    return img ? { src: img.getAttribute("src"), alt: img.alt || "", cap: cap ? cap.textContent : "" } : null;
+  }).filter(Boolean);
+
+  if (items.length) {
+    var lb = document.createElement("div");
+    lb.className = "lb";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-label", "Bildansicht");
+    lb.innerHTML =
+      '<button class="lb-close" aria-label="Schließen">✕</button>' +
+      '<button class="lb-prev" aria-label="Vorheriges Bild">‹</button>' +
+      '<img alt="">' +
+      '<button class="lb-next" aria-label="Nächstes Bild">›</button>' +
+      '<div class="lb-cap"></div><div class="lb-count"></div>';
+    document.body.appendChild(lb);
+
+    var lbImg = lb.querySelector("img");
+    var lbCap = lb.querySelector(".lb-cap");
+    var lbCount = lb.querySelector(".lb-count");
+    var idx = 0;
+
+    function render() {
+      var it = items[idx];
+      lbImg.src = it.src; lbImg.alt = it.alt || it.cap;
+      lbCap.textContent = it.cap;
+      lbCount.textContent = (idx + 1) + " / " + items.length;
+    }
+    function openLb(i) { idx = i; render(); lb.classList.add("open"); document.body.style.overflow = "hidden"; }
+    function closeLb() { lb.classList.remove("open"); document.body.style.overflow = ""; }
+    function step(n) { idx = (idx + n + items.length) % items.length; render(); }
+
+    gals.forEach(function (g, i) {
+      g.setAttribute("role", "button");
+      g.setAttribute("tabindex", "0");
+      g.setAttribute("aria-label", "Bild vergrößern");
+      g.addEventListener("click", function () { openLb(i); });
+      g.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(i); }
+      });
+    });
+
+    lb.querySelector(".lb-close").addEventListener("click", closeLb);
+    lb.querySelector(".lb-prev").addEventListener("click", function () { step(-1); });
+    lb.querySelector(".lb-next").addEventListener("click", function () { step(1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") closeLb();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    });
+
+    /* Wischgesten auf Touch-Geräten */
+    var sx = null;
+    lb.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 45) step(dx > 0 ? -1 : 1);
+      sx = null;
+    }, { passive: true });
+  }
 })();
