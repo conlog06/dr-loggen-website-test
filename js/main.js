@@ -138,7 +138,7 @@
       document.body.style.overflow = open ? "hidden" : "";
     });
     panel.addEventListener("click", function (e) {
-      if (e.target.closest("a")) closeNav();
+      if (e.target.closest("a") || e.target.closest(".panel-close")) closeNav();
     });
     window.addEventListener("resize", function () {
       if (window.innerWidth > 1080) closeNav();

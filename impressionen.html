@@ -47,20 +47,23 @@
     <!-- Mobil: Schnell anrufen -->
     <a class="header-call" href="tel:+495402642100" aria-label="Anrufen: 05402 642100">📞</a>
   </div>
+</header>
 
-  <!-- Mobiles Menü (Vollbild-Panel) -->
-  <nav class="nav-panel" id="nav-panel" aria-label="Hauptnavigation">
-    <a href="index.html">Start</a>
+<!-- Mobiles Menü (Vollbild-Panel) — bewusst AUSSERHALB des Headers,
+     da Safari (iPhone/iPad) position:fixed innerhalb von Elementen mit
+     backdrop-filter falsch berechnet -->
+<nav class="nav-panel" id="nav-panel" aria-label="Hauptnavigation">
+  <button class="panel-close" aria-label="Menü schließen">✕</button>
+  <a href="index.html">Start</a>
       <a href="praxis.html">Praxis</a>
       <a href="leistungen.html">Leistungen</a>
       <a href="impressionen.html" aria-current="page">Impressionen</a>
       <a href="vita.html">Vita</a>
       <a href="kontakt.html">Kontakt</a>
-    <a class="ext" href="https://dr-loggen.maxbenedikt-karriereseite.de/" target="_blank" rel="noopener"><span>Jobs</span></a>
-    <a class="btn btn-primary" href="kontakt.html#termin" data-booking>📅 Termin buchen</a>
-    <div class="panel-info">Zur Rudolfshöhe 2 · 49143 Bissendorf<br>Mo Mi 8–15 · Di Do 12–20 · Fr 8–14 Uhr</div>
-  </nav>
-</header>
+  <a class="ext" href="https://dr-loggen.maxbenedikt-karriereseite.de/" target="_blank" rel="noopener"><span>Jobs</span></a>
+  <a class="btn btn-primary" href="kontakt.html#termin" data-booking>📅 Termin buchen</a>
+  <div class="panel-info">Zur Rudolfshöhe 2 · 49143 Bissendorf<br>Mo Mi 8–15 · Di Do 12–20 · Fr 8–14 Uhr</div>
+</nav>
 
 <main id="main">
 
