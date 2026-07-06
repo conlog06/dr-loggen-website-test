@@ -148,8 +148,9 @@ p{margin:0 0 1em}
 .hero-facts{display:flex;gap:2rem;flex-wrap:wrap}
 .fact-num{font-family:var(--ff-display);font-size:1.7rem;font-weight:700;color:var(--ink)}
 .fact-lbl{font-size:.85rem}
-.hero-right{position:relative;min-height:340px}
-.hero-right img{width:100%;height:100%;object-fit:cover}
+.hero-right{position:relative;min-height:340px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(150deg,var(--sky-l),#fff);padding:clamp(1rem,3vw,2.5rem)}
+.hero-right img{width:100%;height:100%;max-height:560px;object-fit:contain;border-radius:var(--r)}
 .hero-badge{position:absolute;left:clamp(.8rem,3vw,2rem);bottom:clamp(.8rem,3vw,2rem);background:#fff;border-radius:var(--r);
   box-shadow:var(--shadow);padding:.9rem 1.2rem;display:flex;gap:.8rem;align-items:center;max-width:90%}
 .hero-badge .ico{font-size:1.6rem}
@@ -175,8 +176,9 @@ p{margin:0 0 1em}
 
 /* ---------- Warum wir / Überzeugung ---------- */
 .why{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center;margin-top:2.2rem}
-.why-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--sky-l)}
-.why-img img{width:100%;height:100%;object-fit:cover}
+.why-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;
+  background:linear-gradient(150deg,var(--sky-l),#fff);display:flex;align-items:center;justify-content:center;padding:1rem}
+.why-img img{width:100%;height:100%;object-fit:contain}
 .why-badge{position:absolute;right:1rem;bottom:1rem;background:#fff;border-radius:12px;box-shadow:var(--shadow);
   padding:.7rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink)}
 .feat{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.55rem}
@@ -195,8 +197,9 @@ p{margin:0 0 1em}
 .ld{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;max-width:var(--maxw);
   margin:0 auto;padding:clamp(2rem,5vw,3.5rem) clamp(1rem,4vw,2rem)}
 .ld:nth-of-type(even) .ld-img{order:2}
-.ld-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--sky-l)}
-.ld-img img{width:100%;height:100%;object-fit:cover}
+.ld-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;
+  background:linear-gradient(150deg,var(--sky-l),#fff);display:flex;align-items:center;justify-content:center;padding:1rem}
+.ld-img img{width:100%;height:100%;object-fit:contain}
 .ld-label{position:absolute;top:1rem;left:1rem;background:rgba(255,255,255,.94);border-radius:999px;
   padding:.3rem .9rem;font-size:.78rem;font-weight:700;color:var(--blue-d);letter-spacing:.05em;text-transform:uppercase}
 .ld-label.neu{background:var(--gold);color:var(--ink)}
@@ -253,7 +256,8 @@ p{margin:0 0 1em}
 /* ---------- Vita ---------- */
 .vita-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:2.5rem;margin-top:2rem;align-items:start}
 .vita-photo{border-radius:var(--r) var(--r) 0 0;overflow:hidden;background:var(--sky-l)}
-.vita-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.vita-photo{display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--sky-l),#fff);padding:.8rem}
+.vita-photo img{width:100%;max-height:520px;object-fit:contain}
 .vita-name{padding:1rem 1.2rem;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 var(--r) var(--r)}
 .vita-name strong{display:block;color:var(--ink)}
 .vita-name span{font-size:.85rem}
