@@ -147,3 +147,23 @@ https://dr-loggen.maxbenedikt-karriereseite.de/
 - ✅ Dr. Flex Integration (Buchungs-Buttons auf allen Seiten)
 - ✅ Responsiv für Handy, Tablet, PC (iPhone, iPad, Android, Mac, Windows)
 - ✅ DSGVO: Google-Maps-Karte lädt erst nach Klick (Zwei-Klick-Lösung)
+
+
+## NEU (Version 7): Woher die Bilder jetzt kommen
+
+- Die Seite lädt die **echten Praxisfotos direkt von der alten Live-Seite**
+  (www.dr-loggen.de/img/…). Schlägt das fehl, springt automatisch der lokale
+  Platzhalter aus `img/` ein.
+- **Wichtig vor dem Go-Live auf dr-loggen.de:** Sobald die neue Seite die alte
+  ersetzt, existieren diese Alt-Adressen nicht mehr! Vorher alle Fotos von
+  www.dr-loggen.de/img/ herunterladen und in den `img/`-Ordner legen
+  (gleiche Dateinamen) — dann einmal in allen HTML-Dateien
+  `https://www.dr-loggen.de/img/` durch `img/` ersetzen (Suchen & Ersetzen).
+- **Startseiten-Foto (lächelndes Gesicht):** Die Startseite versucht zuerst
+  `img/hero-laecheln.jpg` zu laden. Legen Sie unter diesem Namen ein Foto mit
+  einem lächelnden Menschen ab (eigenes Teamfoto ist am sympathischsten!).
+  Solange keins da ist, zeigt sie das Behandlungsfoto von der Karriereseite.
+  Lizenzfreie Alternativen (kostenlos, auch kommerziell):
+  https://www.pexels.com/de-de/suche/zahnarzt%20l%C3%A4cheln/ oder
+  https://unsplash.com/s/photos/dental-smile — Bild herunterladen und als
+  `img/hero-laecheln.jpg` speichern.

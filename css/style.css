@@ -448,3 +448,48 @@ p{margin:0 0 1em}
   .teeth-anim .tooth,.teeth-anim .beam,.teeth-anim .beam-glow{animation:none}
   .teeth-anim .beam,.teeth-anim .beam-glow{display:none}
 }
+
+
+/* ============================================================
+   FOTOBAND — Bildstreifen auf der Startseite (verlinkt zu Impressionen)
+   ============================================================ */
+.fotoband{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;padding:.6rem;
+  background:#fff}
+.fb-item{position:relative;display:block;overflow:hidden;border-radius:12px;aspect-ratio:4/3;
+  background:var(--sky-l)}
+.fb-item img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.fb-item:hover img{transform:scale(1.06)}
+.fb-item span{position:absolute;left:0;right:0;bottom:0;padding:1.4rem .8rem .6rem;color:#fff;
+  font-size:.85rem;font-weight:600;background:linear-gradient(transparent,rgba(28,27,34,.75))}
+@media (max-width:860px){.fotoband{grid-template-columns:repeat(2,1fr)}}
+
+
+/* ============================================================
+   GALERIE-ÜBERSCHRIFTEN, INSTAGRAM-BANNER, SOCIAL, MOBILE LEISTE
+   ============================================================ */
+.gal-h{margin:2.4rem 0 .2rem;font-size:1.15rem}
+.galerie{margin-top:1rem}
+
+.insta-banner{margin-top:3rem;background:linear-gradient(120deg,var(--sky-l),#fff);
+  border:1px solid var(--line);border-radius:var(--r);padding:1.6rem 1.8rem;
+  display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.insta-banner h3{margin-bottom:.3rem}
+.insta-banner p{margin:0;font-size:.95rem}
+.insta-btns{display:flex;gap:.7rem;flex-wrap:wrap}
+
+.footer .social-row{display:flex;gap:1rem;margin-top:.4rem}
+
+/* Mobile Schnellleiste: Anrufen & Termin buchen */
+.mcta{display:none}
+@media (max-width:700px){
+  .mcta{position:fixed;left:0;right:0;bottom:0;z-index:150;display:grid;grid-template-columns:1fr 1.3fr;
+    gap:1px;background:var(--line);border-top:1px solid var(--line);
+    padding-bottom:env(safe-area-inset-bottom)}
+  .mcta a{display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.95rem .5rem;
+    background:#fff;color:var(--ink);font-weight:700;text-decoration:none;font-size:.95rem}
+  .mcta a.mcta-book{background:var(--sky);color:var(--ink)}
+  .mcta a:active{background:var(--sky-d)}
+  /* Platz schaffen, damit die Leiste nichts verdeckt */
+  body{padding-bottom:calc(56px + env(safe-area-inset-bottom))}
+  .consent{bottom:calc(56px + env(safe-area-inset-bottom))}
+}

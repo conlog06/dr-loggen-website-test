@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#3568B8">
 <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="apple-touch-icon" href="img/logo.png">
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=11">
 <!-- Externe Dienste (Google Fonts, Dr. Flex) werden erst nach
      Cookie-Einwilligung über js/main.js geladen -->
-<script src="js/main.js?v=6" defer></script>
+<script src="js/main.js?v=11" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
@@ -71,9 +71,7 @@
   <div class="hero-left">
     <span class="hero-tag">Zahnarztpraxis · Bissendorf bei Osnabrück</span>
     <h1 class="scanline">Ihr <em>Lächeln</em> in besten Händen</h1>
-    <p class="hero-sub">Modernste Zahnmedizin ohne Kompromisse: abdruckfrei dank 3D-Intraoralscan,
-    Pionier der 3D-navigierten Implantologie und ISO-zertifizierte Qualität — persönlich,
-    ehrlich und mit Zeit für Sie.</p>
+    <p class="hero-sub">Moderne Zahnmedizin — abdruckfrei, persönlich und mit Zeit für Sie.</p>
     <div class="hero-btns">
       <a href="kontakt.html#termin" class="btn btn-primary" data-booking>📅 Online Termin buchen</a>
       <a href="leistungen.html" class="btn btn-outline">Unsere Leistungen</a>
@@ -85,9 +83,9 @@
     </div>
   </div>
   <div class="hero-right">
-    <img src="img/praxis-loggen-haus-01.jpg" alt="Zahnarztpraxis Dr. Loggen in Bissendorf"
-         fetchpriority="high" width="900" height="700"
-         onerror="this.closest('.hero-right').style.background='linear-gradient(140deg,var(--blue),var(--sky))';this.remove()">
+    <img src="img/hero-laecheln.jpg" alt="Lächelnde blonde Frau — strahlendes Lächeln, Zahnarztpraxis Dr. Loggen"
+         fetchpriority="high" width="900" height="700" style="object-position:center"
+         onerror="this.onerror=function(){this.onerror=null;this.src='https://www.dr-loggen.de/img/praxis-loggen-behandlung-02a.jpg'};this.src='https://images.pexels.com/photos/3785838/pexels-photo-3785838.jpeg?auto=compress&cs=tinysrgb&w=1600'">
     <div class="hero-badge">
       <span class="ico">🕐</span>
       <div><strong>Sprechzeiten</strong><span>Mo Mi 8–15 · Di Do 12–20 · Fr 8–14 Uhr</span></div>
@@ -99,8 +97,9 @@
   <div class="container center">
     <span class="section-label reveal">Neu in unserer Praxis</span>
     <h2 class="scanline reveal">Abdruckfreie Praxis</h2>
-    <p class="section-lead reveal">Kein Würgereiz, keine Abformmasse: Mit dem modernsten 3D-Intraoralscanner
-    erfassen wir Ihre Zähne digital — die präzise Grundlage für Zahnersatz und Schienen.</p>
+    <p class="section-lead reveal">Modernster 3D-Intraoralscan für Zahnersatz und Schienen —
+    ganz ohne Abformmasse.</p>
+
     <!-- Animiertes Gebiss: Zahnbogen, über den die 3D-Scan-Linie fährt (dekorativ) -->
     <div class="teeth-wrap reveal" aria-hidden="true">
       <svg class="teeth-anim" viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg">
@@ -111,9 +110,7 @@
             <stop offset="1" stop-color="#A0C6F3" stop-opacity="0"/>
           </linearGradient>
         </defs>
-        <!-- Zahnfleisch-Bogen -->
         <path d="M28 34 Q190 -6 352 34" fill="none" stroke="#EAF2FC" stroke-width="26" stroke-linecap="round"/>
-        <!-- Zahnbogen: 8 Zähne entlang der Kurve -->
         <rect class="tooth t1" x="30"  y="38" width="34" height="52" rx="12"/>
         <rect class="tooth t2" x="72"  y="30" width="34" height="60" rx="12"/>
         <rect class="tooth t3" x="114" y="24" width="36" height="66" rx="12"/>
@@ -122,39 +119,33 @@
         <rect class="tooth t6" x="230" y="24" width="36" height="66" rx="12"/>
         <rect class="tooth t7" x="274" y="30" width="34" height="60" rx="12"/>
         <rect class="tooth t8" x="316" y="38" width="34" height="52" rx="12"/>
-        <!-- 3D-Scan-Linie -->
         <rect class="beam-glow" x="-6" y="8" width="26" height="104" rx="8" fill="url(#beamGrad)"/>
         <rect class="beam" x="2" y="10" width="5" height="100" rx="2.5" fill="#4E7FC4"/>
       </svg>
       <div class="teeth-caption">Digitaler 3D-Scan — präzise, schnell, ohne Abdruck</div>
     </div>
-
-    <div class="cards-grid">
-      <div class="card reveal"><div class="card-icon">📷</div><div class="card-title">3D-Intraoralscan</div>
-        <p class="card-body">Der herkömmliche Abdruck entfällt vollständig — angenehm und in wenigen Minuten erledigt.</p></div>
-      <div class="card reveal" style="transition-delay:.08s"><div class="card-icon">🦷</div><div class="card-title">Zahnersatz &amp; Schienen</div>
-        <p class="card-body">Digitale Modelle mit höchster Passgenauigkeit für Kronen, Brücken und Schienen.</p></div>
-      <div class="card reveal" style="transition-delay:.16s"><div class="card-icon">⚡</div><div class="card-title">Schneller zum Ergebnis</div>
-        <p class="card-body">Daten gehen direkt ins Labor — kürzere Wege, weniger Termine, bessere Ergebnisse.</p></div>
-    </div>
   </div>
+</section>
+
+<!-- Bildband: Einblicke statt Text -->
+<section class="fotoband" aria-label="Einblicke in die Praxis">
+  <a class="fb-item" href="impressionen.html"><img src="https://www.dr-loggen.de/img/praxis-loggen-01.jpg" alt="Empfang" loading="lazy"  onerror="this.onerror=null;this.src='img/praxis-loggen-01.jpg'"><span>Empfang</span></a>
+  <a class="fb-item" href="impressionen.html"><img src="https://www.dr-loggen.de/img/praxis-loggen-behandlung-01.jpg" alt="Behandlungsraum" loading="lazy"  onerror="this.onerror=null;this.src='img/praxis-loggen-behandlung-01.jpg'"><span>Behandlung</span></a>
+  <a class="fb-item" href="impressionen.html"><img src="https://www.dr-loggen.de/img/praxis-loggen-behandlung-02a.jpg" alt="Moderne Behandlung" loading="lazy"  onerror="this.onerror=null;this.src='img/praxis-loggen-behandlung-02a.jpg'"><span>Moderne Technik</span></a>
+  <a class="fb-item" href="impressionen.html"><img src="https://www.dr-loggen.de/img/praxis-loggen-03.jpg" alt="Unser Team" loading="lazy"  onerror="this.onerror=null;this.src='img/praxis-loggen-03.jpg'"><span>Unser Team</span></a>
 </section>
 
 <section class="section">
   <div class="container">
-    <span class="section-label reveal">Warum Dr. Loggen?</span>
-    <h2 class="scanline reveal">Gute Gründe für Ihr Vertrauen</h2>
     <div class="why">
       <div class="reveal">
-        <p class="section-lead">Seit über 25 Jahren behandeln wir Patientinnen und Patienten aus Bissendorf,
-        Osnabrück und Melle — nach dem Grundsatz: erst zuhören und ehrlich beraten, dann behandeln.</p>
+        <span class="section-label">Warum Dr. Loggen?</span>
+        <h2 class="scanline">Gute Gründe für Ihr Vertrauen</h2>
         <ul class="feat">
-          <li><strong>Pionier seit 2008:</strong> 3D-navigierte Implantologie mit minimal-invasiver Schlüsselloch-Technik</li>
-          <li><strong>Abdruckfreie Praxis:</strong> modernster 3D-Intraoralscan für Zahnersatz und Schienen</li>
-          <li><strong>Alles unter einem Dach:</strong> DVT-3D-Röntgen und digitale Diagnostik direkt vor Ort</li>
-          <li><strong>Zertifizierte Qualität:</strong> Qualitätsmanagement nach DIN EN ISO 9001</li>
-          <li><strong>Ihre Zeit zählt:</strong> strukturierte Termine, maximal 15 Minuten Wartezeit</li>
-          <li><strong>Für Angstpatienten:</strong> einfühlsame, schonende Behandlung in ruhiger Atmosphäre</li>
+          <li><strong>Pionier seit 2008:</strong> 3D-navigierte Implantologie</li>
+          <li><strong>Abdruckfrei:</strong> 3D-Intraoralscan statt Abformmasse</li>
+          <li><strong>Alles vor Ort:</strong> DVT-3D-Röntgen &amp; digitale Diagnostik</li>
+          <li><strong>Ihre Zeit zählt:</strong> max. 15 Minuten Wartezeit</li>
         </ul>
         <div class="hero-btns" style="margin-top:1.6rem">
           <a href="kontakt.html#termin" class="btn btn-primary" data-booking>📅 Termin buchen</a>
@@ -162,7 +153,7 @@
         </div>
       </div>
       <div class="why-img reveal">
-        <img src="img/praxis-loggen-behandlung-01.jpg" alt="Moderne Behandlung in der Praxis Dr. Loggen" loading="lazy" onerror="this.remove()">
+        <img src="https://www.dr-loggen.de/img/praxis-loggen-haus-01.jpg" alt="Zahnarztpraxis Dr. Loggen in Bissendorf" loading="lazy"  onerror="this.onerror=null;this.src='img/praxis-loggen-haus-01.jpg'">
         <div class="why-badge">✔ DIN EN ISO 9001 zertifiziert</div>
       </div>
     </div>
@@ -181,17 +172,17 @@
     <h2 class="reveal">Moderne Zahnmedizin — persönlich für Sie</h2>
     <div class="cards-grid">
       <div class="card reveal"><div class="card-icon">🧭</div><div class="card-title">3D-Navigation von Implantaten</div>
-        <p class="card-body">Pionier seit 2008: minimal-invasive Schlüsselloch-Technik mit DVT-Planung.</p></div>
+        <p class="card-body">Minimal-invasive Schlüsselloch-Technik.</p></div>
       <div class="card reveal" style="transition-delay:.06s"><div class="card-icon">📡</div><div class="card-title">Diagnostik &amp; DVT</div>
-        <p class="card-body">3D-Volumentomographie direkt in der Praxis — präzise und strahlungsarm.</p></div>
+        <p class="card-body">3D-Röntgen direkt in der Praxis.</p></div>
       <div class="card reveal" style="transition-delay:.12s"><div class="card-icon">✨</div><div class="card-title">Ästhetik &amp; Funktion</div>
-        <p class="card-body">Veneers, Vollkeramik und metallfreie Füllungen für ein natürliches Lächeln.</p></div>
+        <p class="card-body">Veneers, Vollkeramik, metallfreie Füllungen.</p></div>
       <div class="card reveal"><div class="card-icon">🛡️</div><div class="card-title">Prävention &amp; Zahnerhaltung</div>
-        <p class="card-body">Professionelle Zahnreinigung und Recall-System für lebenslang gesunde Zähne.</p></div>
+        <p class="card-body">Zahnreinigung &amp; Recall-System.</p></div>
       <div class="card reveal" style="transition-delay:.06s"><div class="card-icon">🔩</div><div class="card-title">Zahnersatz &amp; Implantate</div>
-        <p class="card-body">Individueller, vollkeramischer Zahnersatz aus deutschem Meisterlabor.</p></div>
+        <p class="card-body">Vollkeramik aus deutschem Meisterlabor.</p></div>
       <div class="card reveal" style="transition-delay:.12s"><div class="card-icon">🗓️</div><div class="card-title">Individuelle Termine</div>
-        <p class="card-body">Terminvereinbarung flexibel nach Absprache — online oder telefonisch.</p></div>
+        <p class="card-body">Online oder telefonisch vereinbaren.</p></div>
     </div>
     <div style="margin-top:2.4rem"><a class="btn btn-primary" href="leistungen.html">Alle Leistungen ansehen</a></div>
   </div>
@@ -201,9 +192,8 @@
   <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center" id="zeiten-grid">
     <div class="reveal">
       <span class="section-label">Für Sie da</span>
-      <h2 class="scanline">Sprechzeiten &amp; Erreichbarkeit</h2>
-      <p>Dienstags und donnerstags bis 20 Uhr — ideal für Berufstätige. Eine individuelle
-      Terminvereinbarung ist jederzeit möglich, telefonisch oder direkt online über Dr.&nbsp;Flex.</p>
+      <h2 class="scanline">Sprechzeiten</h2>
+      <p>Dienstags und donnerstags bis 20 Uhr — ideal für Berufstätige.</p>
       <div class="hero-btns" style="margin-top:1.2rem">
         <a href="kontakt.html#termin" class="btn btn-primary" data-booking>📅 Termin buchen</a>
         <a href="kontakt.html" class="btn btn-outline">Kontakt &amp; Anfahrt</a>
@@ -241,6 +231,10 @@
           <li><a href="tel:+495402642100">Fon 05402 / 642100</a> · Fax 642102</li>
           <li><a href="mailto:info@dr-loggen.de">info@dr-loggen.de</a></li>
           <li><a href="https://share.google/BpcKm6KDw8pUV2LaH" target="_blank" rel="noopener">↗ Standort in Google Maps</a></li>
+          <li class="social-row">
+            <a href="https://www.instagram.com/zahnarztpraxis_dr_loggen/" target="_blank" rel="noopener" aria-label="Instagram">📸 Instagram</a>
+            <a href="https://de-de.facebook.com/DrLoggen/" target="_blank" rel="noopener" aria-label="Facebook">👍 Facebook</a>
+          </li>
         </ul>
       </div>
       <div>
@@ -279,6 +273,12 @@
     </div>
   </div>
 </footer>
+
+<!-- Mobile Schnellleiste: Anrufen & Termin (nur Handy) -->
+<div class="mcta">
+  <a href="tel:+495402642100">📞 Anrufen</a>
+  <a href="kontakt.html#termin" data-booking class="mcta-book">📅 Termin buchen</a>
+</div>
 
 <!-- ═══════ Cookie- / Einwilligungs-Banner ═══════ -->
 <div class="consent" id="consent" hidden role="dialog" aria-modal="false" aria-labelledby="consent-title">

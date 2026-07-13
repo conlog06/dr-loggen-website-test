@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#3568B8">
 <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="apple-touch-icon" href="img/logo.png">
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=11">
 <!-- Externe Dienste (Google Fonts, Dr. Flex) werden erst nach
      Cookie-Einwilligung über js/main.js geladen -->
-<script src="js/main.js?v=6" defer></script>
+<script src="js/main.js?v=11" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
@@ -68,7 +68,7 @@
 <main id="main">
 
 <div class="ph">
-  <div class="ph-bg"><img src="img/praxis-loggen-haus-01.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+  <div class="ph-bg"><img src="https://www.dr-loggen.de/img/praxis-loggen-haus-01.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='img/praxis-loggen-haus-01.jpg'"></div>
   <div class="container ph-content">
     <div class="breadcrumb"><a href="index.html">Start</a> <span>/ Kontakt</span></div>
     <h1>Kontakt &amp; Anfahrt</h1>
@@ -153,6 +153,10 @@
           <li><a href="tel:+495402642100">Fon 05402 / 642100</a> · Fax 642102</li>
           <li><a href="mailto:info@dr-loggen.de">info@dr-loggen.de</a></li>
           <li><a href="https://share.google/BpcKm6KDw8pUV2LaH" target="_blank" rel="noopener">↗ Standort in Google Maps</a></li>
+          <li class="social-row">
+            <a href="https://www.instagram.com/zahnarztpraxis_dr_loggen/" target="_blank" rel="noopener" aria-label="Instagram">📸 Instagram</a>
+            <a href="https://de-de.facebook.com/DrLoggen/" target="_blank" rel="noopener" aria-label="Facebook">👍 Facebook</a>
+          </li>
         </ul>
       </div>
       <div>
@@ -191,6 +195,12 @@
     </div>
   </div>
 </footer>
+
+<!-- Mobile Schnellleiste: Anrufen & Termin (nur Handy) -->
+<div class="mcta">
+  <a href="tel:+495402642100">📞 Anrufen</a>
+  <a href="kontakt.html#termin" data-booking class="mcta-book">📅 Termin buchen</a>
+</div>
 
 <!-- ═══════ Cookie- / Einwilligungs-Banner ═══════ -->
 <div class="consent" id="consent" hidden role="dialog" aria-modal="false" aria-labelledby="consent-title">
