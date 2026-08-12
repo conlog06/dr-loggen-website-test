@@ -1,33 +1,20 @@
-/* Zahnarztpraxis Dr. Loggen — Interaktionen, Einwilligung, Geräteerkennung */
+/* Zahnarztpraxis Dr. Loggen — Interaktionen, Einwilligung, Geräteerkennung (v12) */
 (function () {
   "use strict";
 
-  /* ============================================================
-     GERÄTE- & BROWSER-ERKENNUNG
-     Setzt Klassen auf <html>, z. B.:
-       device-phone / device-tablet / device-desktop
-       os-ios / os-android / os-windows / os-macos / os-linux
-       browser-chrome / -safari / -firefox / -edge / -samsung / -opera
-       input-touch / input-mouse
-     Funktioniert markenübergreifend (Apple, Samsung, Huawei, Xiaomi,
-     Google, Microsoft …), da über User-Agent + Bildschirm + Eingabeart
-     kombiniert erkannt wird. Das Layout selbst bleibt responsiv
-     (CSS-Breakpoints) — die Klassen erlauben gezielte Feinanpassungen.
-     ============================================================ */
+  /* ---------- Geräte- & Browser-Erkennung (alle Marken) ---------- */
   var d = document.documentElement;
   var ua = navigator.userAgent || "";
   var touch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
 
-  // Betriebssystem
   var os = "other";
   if (/iPhone|iPod/.test(ua)) os = "ios";
-  else if (/iPad/.test(ua) || (/Macintosh/.test(ua) && touch)) os = "ios"; // iPadOS meldet sich als Mac
+  else if (/iPad/.test(ua) || (/Macintosh/.test(ua) && touch)) os = "ios";
   else if (/Android/.test(ua)) os = "android";
   else if (/Windows/.test(ua)) os = "windows";
   else if (/Macintosh|Mac OS X/.test(ua)) os = "macos";
   else if (/Linux/.test(ua)) os = "linux";
 
-  // Gerätetyp (unabhängig von der Marke)
   var minSide = Math.min(screen.width, screen.height);
   var device;
   if (/iPad/.test(ua) || (/Macintosh/.test(ua) && touch)) device = "tablet";
@@ -38,7 +25,6 @@
   else if (touch && minSide < 1000) device = "tablet";
   else device = "desktop";
 
-  // Browser (Reihenfolge wichtig, da sich Browser gegenseitig imitieren)
   var browser = "other";
   if (/SamsungBrowser/.test(ua)) browser = "samsung";
   else if (/Edg\//.test(ua)) browser = "edge";
@@ -50,13 +36,7 @@
   d.classList.add("device-" + device, "os-" + os, "browser-" + browser,
                   touch ? "input-touch" : "input-mouse");
 
-  /* ============================================================
-     EINWILLIGUNG (Cookies & externe Dienste)
-     Wird EINMAL gespeichert und gilt für alle Seiten:
-     localStorage + Cookie (1 Jahr) als doppelte Absicherung —
-     so bleibt die Auswahl auch erhalten, wenn einer der beiden
-     Speicher nicht verfügbar ist (z. B. lokales Testen per file://).
-     ============================================================ */
+  /* ---------- Einwilligung: EINMAL speichern (localStorage + Cookie, 1 Jahr) ---------- */
   var CONSENT_KEY = "loggen-consent"; // "all" | "essential"
   var externalLoaded = false;
 
@@ -72,23 +52,17 @@
   }
   function setConsent(v) {
     try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {}
-    try {
-      document.cookie = CONSENT_KEY + "=" + v +
-        "; max-age=31536000; path=/; SameSite=Lax";
-    } catch (e) {}
+    try { document.cookie = CONSENT_KEY + "=" + v + "; max-age=31536000; path=/; SameSite=Lax"; } catch (e) {}
   }
 
-  /* Externe Dienste erst NACH Einwilligung laden:
-     Google Fonts (Schriftarten) + Dr. Flex (Terminbuchung) */
+  /* Externe Dienste erst NACH Einwilligung: Google Fonts + Dr. Flex */
   function loadExternal(cb) {
     if (externalLoaded) { if (cb) cb(); return; }
     externalLoaded = true;
-
     var fonts = document.createElement("link");
     fonts.rel = "stylesheet";
     fonts.href = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap";
     document.head.appendChild(fonts);
-
     var flex = document.createElement("script");
     flex.src = "https://dr-flex.de/embed.js?medicalPracticeId=59903";
     flex.async = true;
@@ -120,7 +94,7 @@
 
   var stored = getConsent();
   if (stored === "all") { loadExternal(); }
-  else if (!stored) { showBanner(false); } // nur beim allerersten Besuch
+  else if (!stored) { showBanner(false); }
 
   /* ---------- Mobile Navigation ---------- */
   var burger = document.querySelector(".burger");
@@ -148,7 +122,7 @@
     });
   }
 
-  /* ---------- Sanftes Einblenden beim Scrollen ---------- */
+  /* ---------- Sanftes Einblenden ---------- */
   var reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && reveals.length) {
     var io = new IntersectionObserver(function (entries) {
@@ -174,14 +148,14 @@
         }
       });
     } else {
-      showBanner(true); // Hinweis: Für Online-Buchung "Alle akzeptieren"
+      showBanner(true);
     }
   }
   document.querySelectorAll("[data-booking]").forEach(function (btn) {
     btn.addEventListener("click", function (e) { e.preventDefault(); openBooking(); });
   });
 
-  /* ---------- Google Maps: Zwei-Klick-Lösung (DSGVO) ---------- */
+  /* ---------- Google Maps: Zwei-Klick-Lösung ---------- */
   var mapBtn = document.getElementById("load-map");
   if (mapBtn) {
     mapBtn.addEventListener("click", function () {
@@ -197,14 +171,12 @@
     });
   }
 
-  /* ---------- Lightbox: Galerie-Bilder groß ansehen ----------
-     Funktioniert per Klick (PC), Tippen & Wischen (Handy/Tablet)
-     und Tastatur (Pfeiltasten, Escape). */
+  /* ---------- Lightbox: Galerie groß ansehen (Klick, Tippen, Wischen, Tastatur) ---------- */
   var gals = Array.prototype.slice.call(document.querySelectorAll(".gal"));
   var items = gals.map(function (g) {
     var img = g.querySelector("img");
     var cap = g.querySelector(".gal-cap");
-    return img ? { src: img.getAttribute("src"), alt: img.alt || "", cap: cap ? cap.textContent : "" } : null;
+    return img ? { el: img, cap: cap ? cap.textContent : "" } : null;
   }).filter(Boolean);
 
   if (items.length) {
@@ -227,7 +199,8 @@
 
     function render() {
       var it = items[idx];
-      lbImg.src = it.src; lbImg.alt = it.alt || it.cap;
+      lbImg.src = it.el.currentSrc || it.el.src;
+      lbImg.alt = it.el.alt || it.cap;
       lbCap.textContent = it.cap;
       lbCount.textContent = (idx + 1) + " / " + items.length;
     }
@@ -256,7 +229,6 @@
       if (e.key === "ArrowRight") step(1);
     });
 
-    /* Wischgesten auf Touch-Geräten */
     var sx = null;
     lb.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
     lb.addEventListener("touchend", function (e) {
@@ -265,5 +237,37 @@
       if (Math.abs(dx) > 45) step(dx > 0 ? -1 : 1);
       sx = null;
     }, { passive: true });
+  }
+
+  /* ---------- Scroll-Fortschrittsbalken ---------- */
+  var pbar = document.createElement("div");
+  pbar.className = "progressbar";
+  document.body.appendChild(pbar);
+  window.addEventListener("scroll", function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    pbar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+  }, { passive: true });
+
+  /* ---------- Zahlen zählen hoch, sobald sichtbar ---------- */
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length && "IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        var el = en.target;
+        var target = parseInt(el.getAttribute("data-count"), 10);
+        var suffix = el.getAttribute("data-suffix") || "";
+        var t0 = null;
+        function tick(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / 1200, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (el) { cio.observe(el); });
   }
 })();

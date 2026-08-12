@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="3D-Intraoralscan: Scanner digitalisiert Zahnreihe">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EAF2FC"/>
+      <stop offset="1" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4E7FC4" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#A0C6F3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DCE6F3"/>
+    </linearGradient>
+    <style>
+      .pulse{animation:p 2.6s ease-in-out infinite}
+      @keyframes p{0%,100%{opacity:.55}50%{opacity:1}}
+      .dot{animation:d 2.6s ease-in-out infinite}
+      @keyframes d{0%,100%{opacity:.3}50%{opacity:1}}
+      @media (prefers-reduced-motion:reduce){.pulse,.dot{animation:none}}
+    </style>
+  </defs>
+
+  <!-- Hintergrund -->
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <circle cx="60" cy="60" r="90" fill="#A0C6F3" opacity=".12"/>
+  <circle cx="360" cy="260" r="110" fill="#4E7FC4" opacity=".08"/>
+
+  <!-- Zahnfleisch-Bogen -->
+  <path d="M60 190 Q200 150 340 190" fill="none" stroke="#F3D6D2" stroke-width="30" stroke-linecap="round"/>
+
+  <!-- Zahnreihe -->
+  <g stroke="#B9CFEA" stroke-width="2">
+    <rect x="64"  y="192" width="40" height="56" rx="13" fill="#FFFFFF"/>
+    <rect x="112" y="182" width="40" height="66" rx="13" fill="#FFFFFF"/>
+    <rect x="160" y="176" width="42" height="72" rx="13" fill="#FFFFFF"/>
+    <rect x="210" y="176" width="42" height="72" rx="13" fill="#FFFFFF"/>
+    <rect x="260" y="182" width="40" height="66" rx="13" fill="#FFFFFF"/>
+    <rect x="308" y="192" width="40" height="56" rx="13" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Digital erfasster Zahn: 3D-Netz -->
+  <g>
+    <rect x="160" y="176" width="42" height="72" rx="13" fill="#EAF2FC" stroke="#4E7FC4" stroke-width="2.5"/>
+    <path d="M160 194 h42 M160 212 h42 M160 230 h42 M174 176 v72 M188 176 v72" stroke="#4E7FC4" stroke-width="1.2" opacity=".7"/>
+    <g fill="#4E7FC4">
+      <circle class="dot" cx="174" cy="194" r="2.4"/>
+      <circle class="dot" cx="188" cy="212" r="2.4" style="animation-delay:.4s"/>
+      <circle class="dot" cx="174" cy="230" r="2.4" style="animation-delay:.8s"/>
+      <circle class="dot" cx="188" cy="194" r="2.4" style="animation-delay:1.2s"/>
+    </g>
+  </g>
+
+  <!-- Scan-Strahl -->
+  <path class="pulse" d="M181 168 L150 90 L212 90 Z" fill="url(#beam)" transform="rotate(180 181 129)"/>
+
+  <!-- Scanner-Handstück -->
+  <g transform="rotate(24 250 60)">
+    <rect x="196" y="46" width="150" height="30" rx="15" fill="url(#wand)" stroke="#B9CFEA" stroke-width="2"/>
+    <rect x="176" y="52" width="34" height="18" rx="9" fill="#4E7FC4"/>
+    <rect x="330" y="52" width="26" height="18" rx="6" fill="#A0C6F3"/>
+    <circle cx="222" cy="61" r="4" fill="#A0C6F3"/>
+  </g>
+
+  <!-- Monitor-Chip mit 3D-Modell -->
+  <g>
+    <rect x="288" y="96" width="86" height="58" rx="10" fill="#FFFFFF" stroke="#DCE6F3" stroke-width="2"/>
+    <path d="M300 138 Q331 120 362 138" fill="none" stroke="#4E7FC4" stroke-width="6" stroke-linecap="round"/>
+    <path d="M300 130 Q331 112 362 130" fill="none" stroke="#A0C6F3" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <rect x="298" y="104" width="26" height="12" rx="6" fill="#EAF2FC"/>
+    <text x="311" y="113" font-family="Arial, sans-serif" font-size="8.5" font-weight="bold" fill="#3A639F" text-anchor="middle">3D</text>
+  </g>
+
+  <!-- Beschriftung -->
+  <g>
+    <rect x="24" y="24" width="150" height="26" rx="13" fill="#FFFFFF" stroke="#DCE6F3" stroke-width="1.5"/>
+    <circle cx="40" cy="37" r="5" fill="#4FBFA8"/>
+    <text x="50" y="41" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1C1B22">Scan läuft …</text>
+  </g>
+</svg>
