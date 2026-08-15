@@ -4,19 +4,23 @@ Statische HTML-Seite: kein WordPress, keine Datenbank. Responsiv für Handy,
 Tablet, PC (iPhone, iPad, Android, Mac, Windows) mit automatischer Geräte-/
 Browser-Erkennung.
 
-## 1. Woher die Bilder kommen
+## 1. Bilder — alle lokal in `img/`
 
-- Echte Praxisfotos werden von der alten Live-Seite (www.dr-loggen.de/img/…)
-  geladen; Fallback sind lokale Platzhalter in `img/`.
-- **Vor dem Go-Live auf dr-loggen.de:** Alle Fotos von www.dr-loggen.de/img/
-  herunterladen, in `img/` legen (gleiche Namen) und in allen HTML-Dateien
-  `https://www.dr-loggen.de/img/` durch `img/` ersetzen (Suchen & Ersetzen).
-- Startbild: `img/hero-strahlend3.jpg` (KI-generiert mit ChatGPT, Motiv
-  „Strahlend schön"). Bildnachweis steht im Impressum.
-- 3D-Intraoralscan: eigene Illustration `img/leistungen-scan.svg` (lizenzfrei,
-  gehört der Praxis). Für ein echtes Foto später: Herstellerfoto des Scanners
-  anfragen oder eigenes Foto machen und als `img/leistungen-scan.jpg` ablegen,
-  dann in `leistungen.html` den Dateinamen tauschen.
+Die Seite lädt **ausschließlich Bilder aus dem Ordner `img/`** — keine
+externen Quellen, keine Abhängigkeit von der alten Webseite (die bald offline
+geht). Aktuell im Paket:
+
+- Echte Fotos: `praxis-loggen-haus-01.jpg` (Praxisschild),
+  `praxis-loggen-behandlung-03c.jpg` (3D-Intraoralscan-Station),
+  `leistungen-dvt.jpg` (DVT-Gerät), `dr-frank-loggen-portrait.jpg` (Porträt),
+  `hero-strahlend3.jpg` (Startmotiv, KI-generiert), `logo.png`.
+- **Noch Platzhalter (blaue Kacheln mit Zahn):** `praxis-loggen-01.jpg`
+  (Empfang), `praxis-loggen-02.jpg` (Wartebereich), `praxis-loggen-03.jpg`
+  (Zertifikate), `praxis-loggen-behandlung-01.jpg`, `-02a.jpg`, `-02b.jpg`,
+  `-03a.jpg`, `-03b.jpg` (Kunst).
+  → **Bitte die Originalfotos aus dem alten Webseiten-Ordner (oder vom
+  Webdesigner / aus dem alten IONOS-Webspace unter /img/) unter genau
+  diesen Dateinamen in `img/` ablegen.** Die Seite zeigt sie dann sofort.
 - Neue Fotos: mind. 1600 px Breite, JPG 80–85 % (z. B. via squoosh.app).
 
 ## 2. Logo & Farben
