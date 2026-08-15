@@ -1,303 +1,273 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Datenschutz — Zahnarzt Dr. Loggen Bissendorf</title>
-<meta name="description" content="Datenschutzerklärung der Zahnarztpraxis Dr. med. dent. Frank Loggen, Bissendorf.">
-<meta name="theme-color" content="#A0C6F3">
-<link rel="icon" href="img/logo.png" type="image/png">
-<link rel="apple-touch-icon" href="img/logo.png">
-<link rel="stylesheet" href="css/style.css?v=23">
-<!-- Externe Dienste (Google Fonts, Dr. Flex) werden erst nach
-     Cookie-Einwilligung über js/main.js geladen -->
-<script src="js/main.js?v=23" defer></script>
-</head>
-<body>
-<a class="skip" href="#main">Zum Inhalt springen</a>
+/* Zahnarztpraxis Dr. Loggen — Interaktionen, Einwilligung, Geräteerkennung (v12) */
+(function () {
+  "use strict";
 
-<header class="header">
-  <div class="header-inner">
-    <button class="burger" aria-expanded="false" aria-controls="nav-panel" aria-label="Menü öffnen">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="nav-side nav-left" aria-label="Hauptnavigation links">
-      <a href="index.html">Start</a>
-      <a href="praxis.html">Praxis</a>
-      <a href="leistungen.html">Leistungen</a>
-      <a href="impressionen.html">Impressionen</a>
-    </nav>
-    <a class="brand" href="index.html" aria-label="Zur Startseite — Dr. med. dent. Frank Loggen">
-      <img src="img/logo.png" alt="Dr. med. dent. Frank Loggen" width="240" height="55">
-    </a>
-    <nav class="nav-side nav-right" aria-label="Hauptnavigation rechts">
-      <a href="vita.html">Vita</a>
-      <a href="kontakt.html">Kontakt</a>
-      <a class="ext" href="https://dr-loggen.maxbenedikt-karriereseite.de/" target="_blank" rel="noopener" title="Jobs &amp; Karriere"><span>Jobs</span></a>
-      <a class="btn btn-primary nav-cta" href="kontakt.html#termin" data-booking>📅 Termin buchen</a>
-    </nav>
-    <a class="header-call" href="tel:+495402642100" aria-label="Anrufen: 05402 642100">📞</a>
-  </div>
-</header>
+  /* ---------- Geräte- & Browser-Erkennung (alle Marken) ---------- */
+  var d = document.documentElement;
+  var ua = navigator.userAgent || "";
+  var touch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
 
-<!-- Mobiles Menü — bewusst AUSSERHALB des Headers (Safari-Fix: position:fixed
-     in Elementen mit backdrop-filter wird sonst falsch berechnet) -->
-<nav class="nav-panel" id="nav-panel" aria-label="Hauptnavigation">
-  <button class="panel-close" aria-label="Menü schließen">✕</button>
-  <a href="index.html">Start</a>
-      <a href="praxis.html">Praxis</a>
-      <a href="leistungen.html">Leistungen</a>
-      <a href="impressionen.html">Impressionen</a>
-      <a href="vita.html">Vita</a>
-      <a href="kontakt.html">Kontakt</a>
-  <a class="ext" href="https://dr-loggen.maxbenedikt-karriereseite.de/" target="_blank" rel="noopener"><span>Jobs</span></a>
-  <a class="btn btn-primary" href="kontakt.html#termin" data-booking>📅 Termin buchen</a>
-  <div class="panel-info">Zur Rudolfshöhe 2 · 49143 Bissendorf<br>Mo Mi 8–15 · Di Do 12–20 · Fr 8–14 Uhr</div>
-</nav>
+  var os = "other";
+  if (/iPhone|iPod/.test(ua)) os = "ios";
+  else if (/iPad/.test(ua) || (/Macintosh/.test(ua) && touch)) os = "ios";
+  else if (/Android/.test(ua)) os = "android";
+  else if (/Windows/.test(ua)) os = "windows";
+  else if (/Macintosh|Mac OS X/.test(ua)) os = "macos";
+  else if (/Linux/.test(ua)) os = "linux";
 
-<main id="main">
+  var minSide = Math.min(screen.width, screen.height);
+  var device;
+  if (/iPad/.test(ua) || (/Macintosh/.test(ua) && touch)) device = "tablet";
+  else if (/Android/.test(ua) && !/Mobile/.test(ua)) device = "tablet";
+  else if (/Tablet|PlayBook|Silk/.test(ua)) device = "tablet";
+  else if (/iPhone|iPod|Android.*Mobile|Windows Phone|Mobi/.test(ua)) device = "phone";
+  else if (touch && minSide < 600) device = "phone";
+  else if (touch && minSide < 1000) device = "tablet";
+  else device = "desktop";
 
-<div class="ph">
-  <div class="ph-bg"><img src="https://www.dr-loggen.de/img/praxis-loggen-haus-01.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='img/praxis-loggen-haus-01.jpg'"></div>
-  <div class="container ph-content">
-    <div class="breadcrumb"><a href="index.html">Start</a> <span>/ Datenschutz</span></div>
-    <h1>Datenschutzerklärung</h1>
-  </div>
-</div>
+  var browser = "other";
+  if (/SamsungBrowser/.test(ua)) browser = "samsung";
+  else if (/Edg\//.test(ua)) browser = "edge";
+  else if (/OPR\/|Opera/.test(ua)) browser = "opera";
+  else if (/Firefox\//.test(ua)) browser = "firefox";
+  else if (/Chrome\//.test(ua)) browser = "chrome";
+  else if (/Safari\//.test(ua)) browser = "safari";
 
-<section class="section section-alt">
-  <div class="container legal">
+  d.classList.add("device-" + device, "os-" + os, "browser-" + browser,
+                  touch ? "input-touch" : "input-mouse");
 
-    <h2>1. Datenschutz auf einen Blick</h2>
-    <p><strong>Allgemeine Hinweise.</strong> Die folgenden Hinweise geben einen einfachen Überblick
-    darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen.
-    Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
-    Ausführliche Informationen entnehmen Sie der nachfolgenden Datenschutzerklärung.</p>
-    <p><strong>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong>
-    Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten
-    können Sie dem <a href="impressum.html">Impressum</a> dieser Website entnehmen.</p>
-    <p><strong>Wie erfassen wir Ihre Daten?</strong> Ihre Daten werden zum einen dadurch erhoben,
-    dass Sie uns diese mitteilen (z.&nbsp;B. bei einer Terminbuchung oder per E-Mail). Andere Daten
-    werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst — vor allem technische
-    Daten (z.&nbsp;B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).</p>
-    <p><strong>Analyse-Tools:</strong> Diese Website setzt keine Analyse- oder Tracking-Tools ein.
-    Externe Dienste (Google Fonts, Dr. Flex, Google Maps) werden erst nach Ihrer ausdrücklichen
-    Einwilligung geladen.</p>
+  /* ---------- Einwilligung: EINMAL speichern (localStorage + Cookie, 1 Jahr) ---------- */
+  var CONSENT_KEY = "loggen-consent"; // "all" | "essential"
+  var externalLoaded = false;
 
-    <h2>2. Allgemeine Hinweise und Pflichtinformationen</h2>
-    <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir
-    behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen
-    Datenschutzvorschriften sowie dieser Datenschutzerklärung. Wir weisen darauf hin, dass die
-    Datenübertragung im Internet (z.&nbsp;B. bei der Kommunikation per E-Mail) Sicherheitslücken
-    aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+  function readCookie(name) {
+    var m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+    return m ? decodeURIComponent(m[1]) : null;
+  }
+  function getConsent() {
+    var v = null;
+    try { v = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+    if (!v) v = readCookie(CONSENT_KEY);
+    return v === "all" || v === "essential" ? v : null;
+  }
+  function setConsent(v) {
+    try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {}
+    try { document.cookie = CONSENT_KEY + "=" + v + "; max-age=31536000; path=/; SameSite=Lax"; } catch (e) {}
+  }
 
-    <h3>Hinweis zur verantwortlichen Stelle</h3>
-    <p>Dr. Frank Loggen<br>Zur Rudolfshöhe 2, 49143 Bissendorf<br>
-    E-Mail: <a href="mailto:info@dr-loggen.de">info@dr-loggen.de</a><br>Telefon: 05402 / 642100</p>
-    <p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam
-    mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet.</p>
+  /* Externe Dienste erst NACH Einwilligung: Google Fonts + Dr. Flex */
+  function loadExternal(cb) {
+    if (externalLoaded) { if (cb) cb(); return; }
+    externalLoaded = true;
+    var fonts = document.createElement("link");
+    fonts.rel = "stylesheet";
+    fonts.href = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap";
+    document.head.appendChild(fonts);
+    var flex = document.createElement("script");
+    flex.src = "https://dr-flex.de/embed.js?medicalPracticeId=59903";
+    flex.async = true;
+    if (cb) flex.onload = cb;
+    document.head.appendChild(flex);
+  }
 
-    <h3>Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
-    <p>Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich.
-    Sie können eine bereits erteilte Einwilligung jederzeit widerrufen — formlos per E-Mail an uns
-    oder über den Link „Cookie-Einstellungen" im Seitenfuß. Die Rechtmäßigkeit der bis zum Widerruf
-    erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.</p>
+  var banner = document.getElementById("consent");
+  function showBanner(attention) {
+    if (!banner) return;
+    banner.hidden = false;
+    if (attention) banner.classList.add("attention");
+  }
+  function hideBanner() {
+    if (!banner) return;
+    banner.hidden = true;
+    banner.classList.remove("attention");
+  }
+  window.openConsent = function () { showBanner(false); return false; };
 
-    <h3>Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
-    <p>Im Falle datenschutzrechtlicher Verstöße steht dem Betroffenen ein Beschwerderecht bei der
-    zuständigen Aufsichtsbehörde zu, in Niedersachsen: Die Landesbeauftragte für den Datenschutz
-    Niedersachsen. Eine Liste der Datenschutzbeauftragten sowie deren Kontaktdaten:
-    <a href="https://www.bfdi.bund.de/DE/Service/Anschriften/anschriften_table.html" target="_blank"
-    rel="noopener">bfdi.bund.de</a>.</p>
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-consent]");
+    if (!t) return;
+    var mode = t.getAttribute("data-consent");
+    setConsent(mode);
+    hideBanner();
+    if (mode === "all") loadExternal();
+  });
 
-    <h3>Recht auf Datenübertragbarkeit</h3>
-    <p>Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines
-    Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen,
-    maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an
-    einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.</p>
+  var stored = getConsent();
+  if (stored === "all") { loadExternal(); }
+  else if (!stored) { showBanner(false); }
 
-    <h3>SSL- bzw. TLS-Verschlüsselung</h3>
-    <p>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte
-    eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die
-    Adresszeile des Browsers von „http://" auf „https://" wechselt, und an dem Schloss-Symbol in
-    Ihrer Browserzeile. Wenn die Verschlüsselung aktiviert ist, können die Daten, die Sie an uns
-    übermitteln, nicht von Dritten mitgelesen werden.</p>
+  /* ---------- Mobile Navigation ---------- */
+  var burger = document.querySelector(".burger");
+  var panel = document.querySelector(".nav-panel");
+  function closeNav() {
+    if (!panel) return;
+    panel.classList.remove("open");
+    if (burger) burger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  if (burger && panel) {
+    burger.addEventListener("click", function () {
+      var open = panel.classList.toggle("open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
+    });
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest("a") || e.target.closest(".panel-close")) closeNav();
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1080) closeNav();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeNav();
+    });
+  }
 
-    <h3>Auskunft, Berichtigung, Löschung</h3>
-    <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf
-    unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und
-    Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung, Sperrung oder
-    Löschung dieser Daten (Art. 15–21 DSGVO). Hierzu können Sie sich jederzeit unter der im
-    Impressum angegebenen Adresse an uns wenden.</p>
+  /* ---------- Sanftes Einblenden ---------- */
+  var reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && reveals.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  }
 
-    <h3>Widerspruch gegen Werbe-Mails</h3>
-    <p>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung
-    von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit
-    widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle
-    der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</p>
+  /* ---------- Dr. Flex Terminbuchung ---------- */
+  function openBooking() {
+    if (typeof window.toggleDrFlexAppointments === "function") {
+      window.toggleDrFlexAppointments();
+      return;
+    }
+    if (getConsent() === "all") {
+      loadExternal(function () {
+        if (typeof window.toggleDrFlexAppointments === "function") {
+          window.toggleDrFlexAppointments();
+        }
+      });
+    } else {
+      showBanner(true);
+    }
+  }
+  document.querySelectorAll("[data-booking]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) { e.preventDefault(); openBooking(); });
+  });
 
-    <h2>3. Datenerfassung auf unserer Website</h2>
+  /* ---------- Google Maps: Zwei-Klick-Lösung ---------- */
+  var mapBtn = document.getElementById("load-map");
+  if (mapBtn) {
+    mapBtn.addEventListener("click", function () {
+      var wrap = document.getElementById("map-wrap");
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://maps.google.com/maps?q=Zahnarztpraxis+Dr.+Frank+Loggen,+Zur+Rudolfsh%C3%B6he+2,+49143+Bissendorf&output=embed&z=15";
+      iframe.title = "Anfahrt Zahnarztpraxis Dr. Frank Loggen";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.allowFullscreen = true;
+      wrap.innerHTML = "";
+      wrap.appendChild(iframe);
+    });
+  }
 
-    <h3>Cookies und Einwilligung</h3>
-    <p>Diese Website verwendet keine Analyse- oder Werbe-Cookies. Beim ersten Besuch erscheint ein
-    Einwilligungs-Banner. Ihre Auswahl („Alle akzeptieren" oder „Nur notwendige") wird als technisch
-    notwendige Einstellung im lokalen Speicher Ihres Browsers (localStorage) sowie in einem Cookie
-    (Gültigkeit: 1 Jahr) gespeichert, damit das Banner nicht bei jedem Besuch erneut erscheint.
-    Externe Dienste (Google Fonts, Dr. Flex) werden erst nach Ihrer Einwilligung geladen. Sie können
-    Ihre Auswahl jederzeit über „Cookie-Einstellungen" im Seitenfuß ändern. Rechtsgrundlagen:
-    Art. 6 Abs. 1 lit. a DSGVO, § 25 TDDDG; für die Speicherung der Auswahl selbst
-    § 25 Abs. 2 TDDDG (technisch erforderlich).</p>
+  /* ---------- Lightbox: Galerie groß ansehen (Klick, Tippen, Wischen, Tastatur) ---------- */
+  var gals = Array.prototype.slice.call(document.querySelectorAll(".gal"));
+  var items = gals.map(function (g) {
+    var img = g.querySelector("img");
+    var cap = g.querySelector(".gal-cap");
+    return img ? { el: img, cap: cap ? cap.textContent : "" } : null;
+  }).filter(Boolean);
 
-    <h3>Server-Log-Dateien / Hosting</h3>
-    <p>Diese Website wird bei IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, gehostet. Der Provider
-    erhebt und speichert automatisch Informationen in Server-Log-Dateien, die Ihr Browser automatisch
-    übermittelt: Browsertyp und -version, verwendetes Betriebssystem, Referrer-URL, Hostname des
-    zugreifenden Rechners, Uhrzeit der Serveranfrage, IP-Adresse. Eine Zusammenführung dieser Daten
-    mit anderen Datenquellen wird nicht vorgenommen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO
-    (berechtigtes Interesse an einem sicheren und stabilen Betrieb).</p>
+  if (items.length) {
+    var lb = document.createElement("div");
+    lb.className = "lb";
+    lb.setAttribute("role", "dialog");
+    lb.setAttribute("aria-label", "Bildansicht");
+    lb.innerHTML =
+      '<button class="lb-close" aria-label="Schließen">✕</button>' +
+      '<button class="lb-prev" aria-label="Vorheriges Bild">‹</button>' +
+      '<img alt="">' +
+      '<button class="lb-next" aria-label="Nächstes Bild">›</button>' +
+      '<div class="lb-cap"></div><div class="lb-count"></div>';
+    document.body.appendChild(lb);
 
-    <h3>Kontakt</h3>
-    <p>Ein Kontaktformular ist nicht installiert. Sie können uns jedoch eine E-Mail senden; das
-    Versenden von E-Mails erfolgt grundsätzlich unverschlüsselt und auf eigene Gefahr. Bei
-    Kontaktaufnahme per Telefon oder E-Mail werden Ihre Angaben zur Bearbeitung der Anfrage
-    verarbeitet (Art. 6 Abs. 1 lit. b DSGVO).</p>
+    var lbImg = lb.querySelector("img");
+    var lbCap = lb.querySelector(".lb-cap");
+    var lbCount = lb.querySelector(".lb-count");
+    var idx = 0;
 
-    <h2>4. Soziale Medien</h2>
-    <p>Auf unseren Seiten sind keine Plugins sozialer Netzwerke (z.&nbsp;B. Facebook Like-Button)
-    integriert. Wir verlinken ausschließlich auf unsere Profile bei Facebook und Instagram sowie
-    auf unsere Karriereseite; diese öffnen als externe Links in einem neuen Fenster. Beim bloßen
-    Besuch unserer Website werden keine Daten an diese Anbieter übertragen — erst mit dem Klick
-    auf einen Link verlassen Sie unsere Website.</p>
+    function render() {
+      var it = items[idx];
+      lbImg.src = it.el.currentSrc || it.el.src;
+      lbImg.alt = it.el.alt || it.cap;
+      lbCap.textContent = it.cap;
+      lbCount.textContent = (idx + 1) + " / " + items.length;
+    }
+    function openLb(i) { idx = i; render(); lb.classList.add("open"); document.body.style.overflow = "hidden"; }
+    function closeLb() { lb.classList.remove("open"); document.body.style.overflow = ""; }
+    function step(n) { idx = (idx + n + items.length) % items.length; render(); }
 
-    <h2>5. Analyse-Tools und Werbung</h2>
-    <p>Diese Website nutzt kein Google Analytics und keine sonstigen Analyse- oder Werbe-Tools.</p>
+    gals.forEach(function (g, i) {
+      g.setAttribute("role", "button");
+      g.setAttribute("tabindex", "0");
+      g.setAttribute("aria-label", "Bild vergrößern");
+      g.addEventListener("click", function () { openLb(i); });
+      g.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(i); }
+      });
+    });
 
-    <h2>6. Plugins und Tools</h2>
+    lb.querySelector(".lb-close").addEventListener("click", closeLb);
+    lb.querySelector(".lb-prev").addEventListener("click", function () { step(-1); });
+    lb.querySelector(".lb-next").addEventListener("click", function () { step(1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") closeLb();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    });
 
-    <h3>Google Fonts</h3>
-    <p>Nach Ihrer Einwilligung („Alle akzeptieren") werden Schriftarten von Google Fonts
-    (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland) geladen; dabei wird Ihre
-    IP-Adresse an Google übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO. Ohne Einwilligung
-    werden Systemschriften verwendet.</p>
+    var sx = null;
+    lb.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 45) step(dx > 0 ? -1 : 1);
+      sx = null;
+    }, { passive: true });
+  }
 
-    <h3>Google Maps (Zwei-Klick-Lösung)</h3>
-    <p>Diese Seite kann den Kartendienst Google Maps einbinden. Anbieter ist Google Ireland Ltd.,
-    Gordon House, Barrow Street, Dublin 4, Irland. Die Anfahrtskarte wird erst nach Ihrem
-    ausdrücklichen Klick auf „Karte laden" geladen; erst dann werden Daten (u.&nbsp;a. Ihre
-    IP-Adresse) an Google übertragen und in der Regel an einen Server von Google in den USA
-    übermittelt und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese
-    Datenübertragung. Rechtsgrundlage: Ihre Einwilligung, Art. 6 Abs. 1 lit. a DSGVO.
-    Mehr Informationen: <a href="https://policies.google.com/privacy?hl=de" target="_blank"
-    rel="noopener">Datenschutzerklärung von Google</a>.</p>
+  /* ---------- Scroll-Fortschrittsbalken ---------- */
+  var pbar = document.createElement("div");
+  pbar.className = "progressbar";
+  document.body.appendChild(pbar);
+  window.addEventListener("scroll", function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    pbar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+  }, { passive: true });
 
-    <h2>7. Online-Terminvergabe mit Dr. Flex</h2>
-    <p>Wir bieten Patienten die Möglichkeit, über unsere Webseite (und über das Portal von Dr. Flex:
-    <a href="https://www.dr-flex.de" target="_blank" rel="noopener">www.dr-flex.de</a>) online einen
-    Termin für unsere Sprechstunden zu buchen. Dazu nutzen wir den Dienst des Unternehmens Dr. Flex
-    (Dr. Flex GmbH, Stresemannstraße 21, 10963 Berlin). Das Buchungsfenster wird erst nach Ihrer
-    Einwilligung über das Cookie-Banner geladen. Das System stellt Ihnen freie Zeiten in unserem
-    Terminkalender zur Verfügung. Um den Service nutzen zu können, ist es erforderlich, dass Sie
-    bestimmte personenbezogene Daten eingeben und der aktuellen Datenschutzerklärung von Dr. Flex
-    im Verlauf der Terminbuchung zustimmen.</p>
-    <p><strong>Wichtig:</strong> Ihre in das Formular eingegebenen Daten werden ausschließlich zum
-    Zwecke der Terminorganisation an Dr. Flex weitergeleitet und dort verarbeitet. Die Daten werden
-    ausschließlich zum Zweck der Terminvereinbarung sowie der Übermittlung von terminrelevanten
-    Informationen verwendet (z.&nbsp;B. eine Erinnerung an den Termin) und automatisch an uns
-    übermittelt. Insbesondere werden weder wir noch Dr. Flex Ihre Daten zu anderen Zwecken,
-    insbesondere nicht zu Werbezwecken, verarbeiten oder weitergeben. Eine automatische
-    Wiedererkennung bei einer späteren Benutzung ist nicht vorgesehen. Rechtsgrundlagen:
-    Art. 6 Abs. 1 lit. a und b DSGVO.</p>
-  </div>
-</section>
-</main>
-
-<div class="cta-banner">
-  <h2>Jetzt Termin vereinbaren</h2>
-  <p>Buchen Sie Ihren Wunschtermin bequem online über Dr.&nbsp;Flex — oder rufen Sie uns an.</p>
-  <a href="kontakt.html#termin" class="btn btn-white" data-booking>📅 Online buchen</a>
-  &nbsp;
-  <a href="tel:+495402642100" class="btn btn-outline" style="border-color:#fff;color:#fff">📞 05402 / 642100</a>
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <img class="flogo" src="img/logo.png" alt="Dr. med. dent. Frank Loggen">
-        <ul>
-          <li>Zahnarztpraxis Dr. Frank Loggen</li>
-          <li>Zur Rudolfshöhe 2 · 49143 Bissendorf</li>
-          <li><a href="tel:+495402642100">Fon 05402 / 642100</a> · Fax 642102</li>
-          <li><a href="mailto:info@dr-loggen.de">info@dr-loggen.de</a></li>
-          <li><a href="https://share.google/BpcKm6KDw8pUV2LaH" target="_blank" rel="noopener">↗ Standort in Google Maps</a></li>
-          <li class="social-row">
-            <a href="https://www.instagram.com/zahnarztpraxis_dr_loggen/" target="_blank" rel="noopener" aria-label="Instagram">📸 Instagram</a>
-            <a href="https://de-de.facebook.com/DrLoggen/" target="_blank" rel="noopener" aria-label="Facebook">👍 Facebook</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h4>Sprechzeiten</h4>
-        <ul>
-          <li>Mo, Mi: 8:00 – 15:00 Uhr</li>
-          <li>Di, Do: 12:00 – 20:00 Uhr</li>
-          <li>Fr: 8:00 – 14:00 Uhr</li>
-          <li>Individuelle Termine möglich</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Praxis</h4>
-        <ul>
-          <li><a href="praxis.html">Praxis &amp; Service</a></li>
-          <li><a href="leistungen.html">Leistungen</a></li>
-          <li><a href="impressionen.html">Impressionen</a></li>
-          <li><a href="vita.html">Vita</a></li>
-          <li><a href="https://dr-loggen.maxbenedikt-karriereseite.de/" target="_blank" rel="noopener">Jobs &amp; Karriere ↗</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Service</h4>
-        <ul>
-          <li><a href="kontakt.html#termin" data-booking>Online-Termin (Dr. Flex)</a></li>
-          <li><a href="kontakt.html">Kontakt &amp; Anfahrt</a></li>
-          <li><a href="impressum.html">Impressum</a></li>
-          <li><a href="datenschutz.html">Datenschutz</a></li>
-          <li><a href="#" onclick="return openConsent()">Cookie-Einstellungen</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Zahnarztpraxis Dr. med. dent. Frank Loggen · Bissendorf bei Osnabrück</span>
-      <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
-    </div>
-  </div>
-</footer>
-
-<!-- Mobile Schnellleiste: Anrufen & Termin (nur Handy) -->
-<div class="mcta">
-  <a href="tel:+495402642100">📞 Anrufen</a>
-  <a href="kontakt.html#termin" data-booking class="mcta-book">📅 Termin buchen</a>
-</div>
-
-<!-- ═══════ Cookie- / Einwilligungs-Banner ═══════ -->
-<div class="consent" id="consent" hidden role="dialog" aria-modal="false" aria-labelledby="consent-title">
-  <div class="consent-card">
-    <h3 id="consent-title">🍪 Cookies &amp; externe Dienste</h3>
-    <p>Wir verwenden neben technisch notwendiger Speicherung folgende externe Dienste,
-    die erst nach Ihrer Einwilligung geladen werden:</p>
-    <ul class="consent-list">
-      <li><strong>Google Fonts</strong> — Schriftarten (Verbindung zu Google-Servern)</li>
-      <li><strong>Dr. Flex</strong> — Online-Terminbuchung (Dr. Flex GmbH, Berlin)</li>
-      <li><strong>Google Maps</strong> — Anfahrtskarte (lädt zusätzlich erst nach Klick auf „Karte laden")</li>
-    </ul>
-    <div class="consent-btns">
-      <button class="btn btn-primary" data-consent="all">Alle akzeptieren</button>
-      <button class="btn btn-outline" data-consent="essential">Nur notwendige</button>
-      <a href="datenschutz.html" class="btn" style="color:var(--blue)">Datenschutz</a>
-    </div>
-    <p class="consent-hint">Hinweis: Für die Online-Terminbuchung über Dr.&nbsp;Flex wird
-    „Alle akzeptieren" benötigt. Alternativ erreichen Sie uns unter 05402&nbsp;/&nbsp;642100.</p>
-  </div>
-</div>
-</body>
-</html>
+  /* ---------- Zahlen zählen hoch, sobald sichtbar ---------- */
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length && "IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        var el = en.target;
+        var target = parseInt(el.getAttribute("data-count"), 10);
+        var suffix = el.getAttribute("data-suffix") || "";
+        var t0 = null;
+        function tick(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / 1200, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (el) { cio.observe(el); });
+  }
+})();
