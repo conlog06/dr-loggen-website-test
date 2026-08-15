@@ -8,10 +8,10 @@
 <meta name="theme-color" content="#A0C6F3">
 <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="apple-touch-icon" href="img/logo.png">
-<link rel="stylesheet" href="css/style.css?v=35">
+<link rel="stylesheet" href="css/style.css?v=36">
 <!-- Externe Dienste (Google Fonts, Dr. Flex) werden erst nach
      Cookie-Einwilligung über js/main.js geladen -->
-<script src="js/main.js?v=35" defer></script>
+<script src="js/main.js?v=36" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Zum Inhalt springen</a>
@@ -111,7 +111,7 @@
 
     <!-- Animiertes Gebiss: Zahnbogen mit 3D-Scan-Linie (dekorativ) -->
     <div class="teeth-wrap reveal" aria-hidden="true">
-      <svg class="teeth-anim" viewBox="0 0 380 120" xmlns="http://www.w3.org/2000/svg">
+      <svg class="teeth-anim" viewBox="0 0 380 150" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0" stop-color="#A0C6F3" stop-opacity="0"/>
@@ -119,17 +119,38 @@
             <stop offset="1" stop-color="#A0C6F3" stop-opacity="0"/>
           </linearGradient>
         </defs>
-        <path d="M28 34 Q190 -6 352 34" fill="none" stroke="#EAF2FC" stroke-width="26" stroke-linecap="round"/>
-        <rect class="tooth t1" x="30"  y="38" width="34" height="52" rx="12"/>
-        <rect class="tooth t2" x="72"  y="30" width="34" height="60" rx="12"/>
-        <rect class="tooth t3" x="114" y="24" width="36" height="66" rx="12"/>
-        <rect class="tooth t4" x="158" y="21" width="30" height="69" rx="11"/>
-        <rect class="tooth t5" x="192" y="21" width="30" height="69" rx="11"/>
-        <rect class="tooth t6" x="230" y="24" width="36" height="66" rx="12"/>
-        <rect class="tooth t7" x="274" y="30" width="34" height="60" rx="12"/>
-        <rect class="tooth t8" x="316" y="38" width="34" height="52" rx="12"/>
-        <rect class="beam-glow" x="-6" y="8" width="26" height="104" rx="8" fill="url(#beamGrad)"/>
-        <rect class="beam" x="2" y="10" width="5" height="100" rx="2.5" fill="#4E7FC4"/>
+        <!-- Zahnfleisch (Oberkiefer) mit Girlandenverlauf -->
+        <rect x="16" y="6" width="348" height="28" rx="14" fill="#F3D6D2"/>
+        <ellipse cx="44"  cy="34" rx="18" ry="10" fill="#F3D6D2"/>
+        <ellipse cx="82"  cy="36" rx="21" ry="12" fill="#F3D6D2"/>
+        <ellipse cx="122" cy="38" rx="19" ry="12" fill="#F3D6D2"/>
+        <ellipse cx="165" cy="40" rx="25" ry="14" fill="#F3D6D2"/>
+        <ellipse cx="215" cy="40" rx="25" ry="14" fill="#F3D6D2"/>
+        <ellipse cx="258" cy="38" rx="19" ry="12" fill="#F3D6D2"/>
+        <ellipse cx="298" cy="36" rx="21" ry="12" fill="#F3D6D2"/>
+        <ellipse cx="336" cy="34" rx="18" ry="10" fill="#F3D6D2"/>
+        <!-- Oberkiefer-Front, hängend, korrekte Proportionen:
+             mittlere Schneidezähne am größten, seitliche kleiner,
+             Eckzähne mit Spitze, Prämolaren außen kürzer -->
+        <!-- Prämolar links (t1) -->
+        <path class="tooth t1" d="M30 30 h28 q4 0 4 5 v28 q0 12 -12 12 h-12 q-12 0 -12 -12 v-28 q0 -5 4 -5 z"/>
+        <!-- Eckzahn links (t2) -->
+        <path class="tooth t2" d="M66 30 h32 q5 0 5 6 v34 q0 9 -11 19 l-6.5 6 q-2.5 2.3 -5 0 l-6.5 -6 q-11 -10 -11 -19 v-34 q0 -6 5 -6 z"/>
+        <!-- Seitlicher Schneidezahn links (t3) -->
+        <path class="tooth t3" d="M108 30 h30 q5 0 5 6 v38 q0 14 -15 14 h-10 q-15 0 -15 -14 v-38 q0 -6 5 -6 z"/>
+        <!-- Mittlerer Schneidezahn links (t4) -->
+        <path class="tooth t4" d="M148 30 h38 q6 0 6 7 v52 q0 13 -14 13 h-22 q-14 0 -14 -13 v-52 q0 -7 6 -7 z"/>
+        <!-- Mittlerer Schneidezahn rechts (t5) -->
+        <path class="tooth t5" d="M194 30 h38 q6 0 6 7 v52 q0 13 -14 13 h-22 q-14 0 -14 -13 v-52 q0 -7 6 -7 z"/>
+        <!-- Seitlicher Schneidezahn rechts (t6) -->
+        <path class="tooth t6" d="M242 30 h30 q5 0 5 6 v38 q0 14 -15 14 h-10 q-15 0 -15 -14 v-38 q0 -6 5 -6 z"/>
+        <!-- Eckzahn rechts (t7) -->
+        <path class="tooth t7" d="M282 30 h32 q5 0 5 6 v34 q0 9 -11 19 l-6.5 6 q-2.5 2.3 -5 0 l-6.5 -6 q-11 -10 -11 -19 v-34 q0 -6 5 -6 z"/>
+        <!-- Prämolar rechts (t8) -->
+        <path class="tooth t8" d="M322 30 h28 q4 0 4 5 v28 q0 12 -12 12 h-12 q-12 0 -12 -12 v-28 q0 -5 4 -5 z"/>
+        <!-- 3D-Scan-Linie -->
+        <rect class="beam-glow" x="-6" y="4" width="26" height="140" rx="8" fill="url(#beamGrad)"/>
+        <rect class="beam" x="2" y="6" width="5" height="136" rx="2.5" fill="#4E7FC4"/>
       </svg>
       <div class="teeth-caption">Digitaler 3D-Scan — präzise, schnell, ohne Abdruck</div>
     </div>
@@ -137,12 +158,9 @@
 </section>
 
 
-<!-- Bildband: Einblicke statt Text -->
-<section class="fotoband" aria-label="Einblicke in die Praxis">
-  <a class="fb-item" href="impressionen.html"><img src="img/praxis-loggen-01.jpg" alt="Empfang" loading="lazy" ><span>Empfang</span></a>
-  <a class="fb-item" href="impressionen.html"><img src="img/praxis-loggen-behandlung-01.jpg" alt="Behandlungsraum" loading="lazy" ><span>Behandlung</span></a>
-  <a class="fb-item" href="impressionen.html"><img src="img/praxis-loggen-behandlung-02a.jpg" alt="Moderne Behandlung" loading="lazy" ><span>Moderne Technik</span></a>
-  <a class="fb-item" href="impressionen.html"><img src="img/praxis-loggen-behandlung-03c.jpg" alt="3D-Intraoralscan" loading="lazy" ><span>3D-Intraoralscan</span></a>
+
+<section class="fotostreifen" aria-label="Einblicke in die Praxis">
+  <div class="fs-track"><div class="fs-item gal"><img src="img/praxis-loggen-01.jpg" alt="Empfang" loading="lazy" ><div class="gal-cap">Empfang</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-01.jpg" alt="Behandlungsraum" loading="lazy" ><div class="gal-cap">Behandlungsraum</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-03c.jpg" alt="3D-Intraoralscan" loading="lazy" ><div class="gal-cap">3D-Intraoralscan</div></div><div class="fs-item gal"><img src="img/praxis-loggen-02.jpg" alt="Wartebereich" loading="lazy" ><div class="gal-cap">Wartebereich</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-02a.jpg" alt="Moderne Behandlung" loading="lazy" ><div class="gal-cap">Moderne Behandlung</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-03b.jpg" alt="Kunst in der Praxis" loading="lazy" ><div class="gal-cap">Kunst in der Praxis</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-02b.jpg" alt="Ausstattung" loading="lazy" ><div class="gal-cap">Ausstattung</div></div><div class="fs-item gal"><img src="img/praxis-loggen-haus-01.jpg" alt="Unsere Praxis" loading="lazy" ><div class="gal-cap">Unsere Praxis</div></div><div class="fs-item gal"><img src="img/praxis-loggen-01.jpg" alt="Empfang" loading="lazy" ><div class="gal-cap">Empfang</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-01.jpg" alt="Behandlungsraum" loading="lazy" ><div class="gal-cap">Behandlungsraum</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-03c.jpg" alt="3D-Intraoralscan" loading="lazy" ><div class="gal-cap">3D-Intraoralscan</div></div><div class="fs-item gal"><img src="img/praxis-loggen-02.jpg" alt="Wartebereich" loading="lazy" ><div class="gal-cap">Wartebereich</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-02a.jpg" alt="Moderne Behandlung" loading="lazy" ><div class="gal-cap">Moderne Behandlung</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-03b.jpg" alt="Kunst in der Praxis" loading="lazy" ><div class="gal-cap">Kunst in der Praxis</div></div><div class="fs-item gal"><img src="img/praxis-loggen-behandlung-02b.jpg" alt="Ausstattung" loading="lazy" ><div class="gal-cap">Ausstattung</div></div><div class="fs-item gal"><img src="img/praxis-loggen-haus-01.jpg" alt="Unsere Praxis" loading="lazy" ><div class="gal-cap">Unsere Praxis</div></div></div>
 </section>
 
 
