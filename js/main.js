@@ -45,14 +45,29 @@
     return m ? decodeURIComponent(m[1]) : null;
   }
   function getConsent() {
-    var v = null;
-    try { v = localStorage.getItem(CONSENT_KEY); } catch (e) {}
-    if (!v) v = readCookie(CONSENT_KEY);
-    return v === "all" || v === "essential" ? v : null;
+    var ls = null;
+    try { ls = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+    var ck = readCookie(CONSENT_KEY);
+    var v = ls || ck;
+    if (v !== "all" && v !== "essential") return null;
+    // Speicher synchron halten: fehlt einer der beiden (z. B. Cookie
+    // abgelaufen oder nur Cookies gelöscht), wird er wiederhergestellt —
+    // das Banner erscheint dadurch NUR, wenn wirklich beide leer sind.
+    if (!ls || !ck) setConsent(v);
+    return v;
   }
   function setConsent(v) {
     try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {}
-    try { document.cookie = CONSENT_KEY + "=" + v + "; max-age=31536000; path=/; SameSite=Lax"; } catch (e) {}
+    try {
+      var base = CONSENT_KEY + "=" + v + "; max-age=31536000; path=/; SameSite=Lax";
+      document.cookie = base;
+      // Zusätzlich domainweit setzen (gilt dann für www. und ohne www.);
+      // auf Hosts wie github.io wird das vom Browser ignoriert — unschädlich.
+      var h = location.hostname.split(".");
+      if (h.length >= 2) {
+        document.cookie = base + "; domain=." + h.slice(-2).join(".");
+      }
+    } catch (e) {}
   }
 
   /* Externe Dienste erst NACH Einwilligung: Google Fonts + Dr. Flex */
