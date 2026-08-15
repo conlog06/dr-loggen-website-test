@@ -496,23 +496,26 @@ p{margin:0 0 1em}
 
 
 /* ============================================================
-   VITA — modernes Bild-Duo (Porträt + Zertifikate) + Badges
+   VITA — Bild-Duo (Porträt + Zertifikate), identische Boxen, anklickbar
    ============================================================ */
 .vita-grid{grid-template-columns:1fr 1fr;align-items:start;gap:clamp(1.6rem,4vw,3rem)}
-.vita-visual{display:grid;grid-template-columns:1.25fr 1fr;gap:.9rem;position:sticky;top:96px}
-.vita-card{position:relative;border-radius:var(--r);overflow:hidden;background:#fff;
-  border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .25s}
-.vita-card:hover{transform:translateY(-3px)}
-.vita-card img{width:100%;height:100%;object-fit:cover;display:block}
-.vita-card-main{aspect-ratio:4/5}
-.vita-card-main img{object-position:50% 20%;filter:saturate(.9)}
-.vita-card-side{aspect-ratio:4/5;background:linear-gradient(150deg,var(--sky-l),#fff);padding:.6rem}
-.vita-card-side img{object-fit:contain;border-radius:10px;background:#fff}
-.vita-cap{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .9rem .8rem;color:#fff;
-  background:linear-gradient(transparent,rgba(28,27,34,.82))}
+.vita-visual{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;position:sticky;top:96px}
+.vita-card{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;
+  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer;
+  transition:transform .25s,box-shadow .25s}
+.vita-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(28,27,34,.16)}
+.vita-card:focus-visible{outline:3px solid var(--sky)}
+.vita-card img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block;transition:transform .4s}
+.vita-card:hover img{transform:scale(1.04)}
+.vita-card::after{content:"🔍";position:absolute;top:.6rem;right:.6rem;width:32px;height:32px;
+  border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;opacity:0;transition:opacity .25s;pointer-events:none}
+.vita-card:hover::after{opacity:1}
+.input-touch .vita-card::after{opacity:1}
+.vita-cap{position:absolute;left:0;right:0;bottom:0;padding:1.8rem .9rem .8rem;color:#fff;
+  background:linear-gradient(transparent,rgba(28,27,34,.85));font-size:inherit;font-weight:normal}
 .vita-cap strong{display:block;font-family:var(--ff-display);font-size:.98rem;line-height:1.2}
 .vita-cap span{font-size:.78rem;opacity:.9}
-.vita-card-side .vita-cap{background:linear-gradient(transparent,rgba(28,27,34,.7))}
 .vita-badges{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:.5rem}
 .vita-badges span{background:var(--sky-l);border:1px solid var(--line);color:var(--ink);
   border-radius:999px;padding:.35rem .8rem;font-size:.8rem;font-weight:600}
@@ -521,8 +524,7 @@ p{margin:0 0 1em}
   .vita-visual{position:static;max-width:640px}
 }
 @media (max-width:480px){
-  .vita-visual{grid-template-columns:1fr 1fr}
-  .vita-card-main,.vita-card-side{aspect-ratio:3/4}
+  .vita-card{aspect-ratio:3/4}
   .vita-cap strong{font-size:.85rem}
   .vita-cap span{display:none}
 }
